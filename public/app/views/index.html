@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+        <base href="/">     <!-- This line is important -->
+        <title>User Lists</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        
+    </head>
+    <body ng-controller="MainController as main">
+        <header>
+            <div class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a href="/" class="navbar-brand"><span class="glyphicon glyphicon-book"></span>User Story</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/users"></a></li>
+                    </ul>
+                    
+                    <ul class="nav navbar-nav navbar-right">
+                        
+                        <li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
+                        <li ng-if="!main.loggedIn"><a href="/signup">Sign up</a></li>
+                        
+                        <li ng-if="main.loggedIn"><a href="#">Hello {{main.user.username}}</a></li>
+                        <li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
+                                               
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <main class="container"> 
+
+            <div ng-view></div>
+            
+        </main>
+        
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+        <script type="text/javascript" src="https://code.angularjs.org/1.5.3/angular-route.js"></script>
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        
+        <!-- Services -->
+        <script type="text/javascript" src="app/services/authService.js"></script>
+        <script type="text/javascript" src="app/services/userService.js"></script>
+        <script type="text/javascript" src="app/services/storyService.js"></script>
+        
+        <!-- Controllers -->
+        <script type="text/javascript" src="app/controllers/mainCtrl.js"></script>
+        <script type="text/javascript" src="app/controllers/userCtrl.js"></script>
+        <script type="text/javascript" src="app/controllers/storyCtrl.js"></script>
+        
+        <!-- Directives -->
+        <script type="text/javascript" src="app/directives/reverse.js"></script>
+        
+        
+        <script type="text/javascript" src="app/app.routes.js"></script>
+        
+        <script type="text/javascript" src="app/app.js"></script>
+    </body>
+
+</html>
